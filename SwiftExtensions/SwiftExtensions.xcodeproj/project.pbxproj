@@ -11,6 +11,8 @@
 		834982F627E7336A00749FDE /* SwiftExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834982EB27E7336A00749FDE /* SwiftExtensions.framework */; };
 		834982FB27E7336A00749FDE /* SwiftExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834982FA27E7336A00749FDE /* SwiftExtensionsTests.swift */; };
 		834982FC27E7336A00749FDE /* SwiftExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 834982EE27E7336A00749FDE /* SwiftExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8349830627E733C100749FDE /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8349830527E733C100749FDE /* StringExtensions.swift */; };
+		8349830727E733C100749FDE /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8349830527E733C100749FDE /* StringExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,7 @@
 		834982EF27E7336A00749FDE /* SwiftExtensions.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = SwiftExtensions.docc; sourceTree = "<group>"; };
 		834982F527E7336A00749FDE /* SwiftExtensionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftExtensionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		834982FA27E7336A00749FDE /* SwiftExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftExtensionsTests.swift; sourceTree = "<group>"; };
+		8349830527E733C100749FDE /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,7 @@
 			children = (
 				834982EE27E7336A00749FDE /* SwiftExtensions.h */,
 				834982EF27E7336A00749FDE /* SwiftExtensions.docc */,
+				8349830527E733C100749FDE /* StringExtensions.swift */,
 			);
 			path = SwiftExtensions;
 			sourceTree = "<group>";
@@ -194,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8349830627E733C100749FDE /* StringExtensions.swift in Sources */,
 				834982F027E7336A00749FDE /* SwiftExtensions.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,6 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8349830727E733C100749FDE /* StringExtensions.swift in Sources */,
 				834982FB27E7336A00749FDE /* SwiftExtensionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,7 +274,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -325,7 +331,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -350,6 +356,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -378,6 +386,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -396,6 +406,7 @@
 		8349830327E7336A00749FDE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GJ8UPGTF4F;
@@ -412,6 +423,7 @@
 		8349830427E7336A00749FDE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GJ8UPGTF4F;
