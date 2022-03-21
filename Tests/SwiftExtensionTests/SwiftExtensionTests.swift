@@ -7,9 +7,22 @@ final class SwiftExtensionTests: XCTestCase {
 	}
 	
 	func testNonOptional() throws {
-		let nilString: String? = nil
+		var nilString: String? = nil
 		XCTAssert(nilString.nonOptional() == "")
 		XCTAssert(nilString.nonOptional("Hello, world!") == "Hello, world!")
+		
+		nilString = "Hello!"
+		
+		XCTAssert(nilString.nonOptional() == "Hello!")
+		XCTAssert(nilString.nonOptional("Hello, world!") == "Hello!")
+		
+		var nilFloat: Float? = nil
+		XCTAssert(nilFloat.nonOptional() == 0.0)
+		XCTAssert(nilFloat.nonOptional(20.0) == 20.0)
+		
+		nilFloat = 30.0
+		XCTAssert(nilFloat.nonOptional() == 30.0)
+		XCTAssert(nilFloat.nonOptional(20.0) == 30.0)
 	}
 	
 	func testSafeInArray() throws {

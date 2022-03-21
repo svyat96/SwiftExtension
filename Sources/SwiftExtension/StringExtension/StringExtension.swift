@@ -24,31 +24,6 @@ extension String {
 	}
 }
 
-public protocol NonOptionalProtocol {
-	static var defaultValue: Self { get }
-}
-
-extension Optional where Wrapped: NonOptionalProtocol {
-	public func nonOptional(
-		_ defaultValue: Wrapped = Wrapped.defaultValue
-	) -> Wrapped {
-		switch self {
-		case .none:
-			return defaultValue
-		case .some(let wrapped):
-			return wrapped
-		}
-	}
-}
-
 extension String: NonOptionalProtocol {
 	static public let defaultValue: String = ""
-}
-
-extension Array {
-	subscript(
-		safe index: Int
-	) -> Element? {
-		return count > index ? self[index] : nil
-	}
 }
