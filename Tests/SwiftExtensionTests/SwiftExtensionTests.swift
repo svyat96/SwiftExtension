@@ -3,7 +3,7 @@ import XCTest
 
 final class SwiftExtensionTests: XCTestCase {
 	func testAdd() throws {
-		XCTAssert("20.0" == .empty.add(20.0))
+		XCTAssert("20.0" == .empty.addToTail(20.0))
 	}
 	
 	func testNonOptional() throws {
