@@ -77,7 +77,7 @@ extension String {
 		return self + strokeClosure()
 	}
 	
-	/// - Parameter strokeClosure: string configuration
+	/// - Parameter stroke: string 
 	/// - Returns: stroke + self
 	public func addToHead(_ stroke: String) -> String {
 		return addToHead {
@@ -85,8 +85,8 @@ extension String {
 		}
 	}
 	
-	/// - Parameter strokeClosure: string configuration
-	/// - Returns: stroke + self
+	/// - Parameter stroke: string
+	/// - Returns: self + stroke
 	public func addToTail(_ stroke: String) -> String {
 		return addToTail {
 			return stroke
@@ -94,7 +94,7 @@ extension String {
 	}
 	
 	/// - Parameter optionalStroke: string?
-	/// - Returns: self || self + strokeClosure
+	/// - Returns: self || self + optionalStroke
 	public func addToTail(_ optionalStroke: String?) -> String {
 		guard let optionalStroke = optionalStroke else {
 			return self
@@ -103,7 +103,7 @@ extension String {
 	}
 	
 	/// - Parameter optionalStroke: string?
-	/// - Returns:  strokeClosure + self
+	/// - Returns:  self || optionalStroke + self
 	public func addToHead(_ optionalStroke: String?) -> String {
 		guard let optionalStroke = optionalStroke else {
 			return self
