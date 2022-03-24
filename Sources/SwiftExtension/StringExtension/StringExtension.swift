@@ -112,12 +112,12 @@ extension String {
 	}
 	
 	/// - Returns: Double(self)
-	func toDouble() -> Double? {
+	public func toDouble() -> Double? {
 		return Double(self)
 	}
 	
 	/// - Returns: Int(self)
-	func toInt() -> Int? {
+	public func toInt() -> Int? {
 		return Int(self)
 	}
 }
