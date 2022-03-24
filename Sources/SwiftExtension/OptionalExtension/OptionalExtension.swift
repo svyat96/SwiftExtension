@@ -8,14 +8,13 @@
 import Foundation
 
 extension Optional where Wrapped: NonOptionalProtocol {
+	
+	/// Get some value or defaultValue
+	/// - Parameter defaultValue: NonOptionalProtocol.defaultValue
+	/// - Returns: some ?? defaultValue
 	public func nonOptional(
 		_ defaultValue: Wrapped = Wrapped.defaultValue
 	) -> Wrapped {
-		switch self {
-		case .none:
-			return defaultValue
-		case .some(let wrapped):
-			return wrapped
-		}
+		return self ?? defaultValue
 	}
 }

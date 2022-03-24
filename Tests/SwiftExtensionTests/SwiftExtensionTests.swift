@@ -3,7 +3,7 @@ import XCTest
 
 final class SwiftExtensionTests: XCTestCase {
 	func testAdd() throws {
-		XCTAssert("20.0" == .empty.add(20.0))
+		XCTAssert("20.0" == .empty.addToTail(20.0))
 	}
 	
 	func testNonOptional() throws {
@@ -32,5 +32,36 @@ final class SwiftExtensionTests: XCTestCase {
 		
 		let emptyArray: [String] = []
 		XCTAssert(emptyArray[safe: 20] == nil)
+	}
+	
+	func testRemoveFirstSpaceSymbol() throws {
+		let exampleText = "    Hello!    "
+		let successResult = "Hello!    "
+		
+		let spaceText = "         "
+		let resultSpaceText = ""
+		XCTAssert(exampleText.textWithoutSpacePrefix() == successResult)
+		XCTAssert(successResult.textWithoutSpacePrefix() == successResult)
+		XCTAssert(spaceText.textWithoutSpacePrefix() == resultSpaceText)
+		XCTAssert(resultSpaceText.textWithoutSpacePrefix() == resultSpaceText)
+	}
+	
+	func testCapitalizingFirstLetter() throws {
+		let exampleText = "abbbbb bbbbb"
+		let exampleResultText = "Abbbbb bbbbb"
+		
+		let emptyText = ""
+		let emptyResultText = ""
+		
+		XCTAssert(exampleText.capitalizingFirstLetter() == exampleResultText)
+		XCTAssert(emptyText.capitalizingFirstLetter() == emptyResultText)
+	}
+	
+	func testFunctionalPlusString() throws {
+		let exampleText = "bla"
+		let exampleResultText = "bla bla"
+		let transformText = exampleText.addToTail(.space).addToTail(exampleText)
+		
+		XCTAssert(transformText == exampleResultText)
 	}
 }
