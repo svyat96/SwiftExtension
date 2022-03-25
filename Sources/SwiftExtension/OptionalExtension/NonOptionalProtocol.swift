@@ -28,5 +28,5 @@ extension Int: NonOptionalProtocol {
 
 extension String: NonOptionalProtocol {
 	// = ""
-	static public let defaultValue: String = ""
+	static public let defaultValue: String = .empty
 }

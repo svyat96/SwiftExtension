@@ -7,6 +7,11 @@
 
 import Foundation
 
+extension Character {
+	/// = " "
+	public static let space: Character = " "
+}
+
 extension String {
 	/// = ""
 	public static let empty = ""
@@ -15,15 +20,14 @@ extension String {
 	
 	/// Returns text without spaces before the first letter.
 	public func textWithoutSpacePrefix() -> String {
-		textWithoutCharacterPrefix(character: " ")
+		textWithoutCharacterPrefix(character: .space)
 	}
 	
 	/// Returns the text without the character before the first letter.
 	public func textWithoutCharacterPrefix(character: Character) -> String {
-		let emptyString: String = ""
 		guard let firstIndex = (self.firstIndex { char in char != character })
 		else {
-			return emptyString
+			return .empty
 		}
 		return String(self[firstIndex...])
 	}
