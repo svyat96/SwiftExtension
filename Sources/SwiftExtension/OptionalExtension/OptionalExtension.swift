@@ -18,3 +18,12 @@ extension Optional where Wrapped: NonOptionalProtocol {
 		return self ?? defaultValue
 	}
 }
+
+extension Optional {
+	/// Get some value or defaultValue
+	public func nonOptional(
+		_ defaultValue: Wrapped
+	) -> Wrapped {
+		return self ?? defaultValue
+	}
+}
