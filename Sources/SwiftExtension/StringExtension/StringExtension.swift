@@ -7,6 +7,11 @@
 
 import Foundation
 
+extension Character {
+	/// = " "
+	public static let space: Character = " "
+}
+
 extension String {
 	/// = ""
 	public static let empty = ""
@@ -15,15 +20,17 @@ extension String {
 	
 	/// Returns text without spaces before the first letter.
 	public func textWithoutSpacePrefix() -> String {
-		textWithoutCharacterPrefix(character: " ")
+		textWithoutCharacterPrefix(character: .space)
 	}
 	
 	/// Returns the text without the character before the first letter.
-	public func textWithoutCharacterPrefix(character: Character) -> String {
-		let emptyString: String = ""
-		guard let firstIndex = (self.firstIndex { char in char != character })
+	public func textWithoutCharacterPrefix(
+		character: Character
+	) -> String {
+		let firstIndexOptional = firstIndex { char in char != character }
+		guard let firstIndex = firstIndexOptional
 		else {
-			return emptyString
+			return .empty
 		}
 		return String(self[firstIndex...])
 	}
@@ -67,19 +74,25 @@ extension String {
 	
 	/// - Parameter strokeClosure: string configuration
 	/// - Returns: strokeClosure + self
-	public func addToHead(_ strokeClosure: () -> String) -> String {
+	public func addToHead(
+		_ strokeClosure: () -> String
+	) -> String {
 		return strokeClosure() + self
 	}
 	
 	/// - Parameter strokeClosure: string configuration
 	/// - Returns: strokeClosure + self
-	public func addToTail(_ strokeClosure: () -> String) -> String {
+	public func addToTail(
+		_ strokeClosure: () -> String
+	) -> String {
 		return self + strokeClosure()
 	}
 	
 	/// - Parameter stroke: string 
 	/// - Returns: stroke + self
-	public func addToHead(_ stroke: String) -> String {
+	public func addToHead(
+		_ stroke: String
+	) -> String {
 		return addToHead {
 			return stroke
 		}
@@ -87,7 +100,9 @@ extension String {
 	
 	/// - Parameter stroke: string
 	/// - Returns: self + stroke
-	public func addToTail(_ stroke: String) -> String {
+	public func addToTail(
+		_ stroke: String
+	) -> String {
 		return addToTail {
 			return stroke
 		}
@@ -95,7 +110,9 @@ extension String {
 	
 	/// - Parameter optionalStroke: string?
 	/// - Returns: self || self + optionalStroke
-	public func addToTail(_ optionalStroke: String?) -> String {
+	public func addToTail(
+		_ optionalStroke: String?
+	) -> String {
 		guard let optionalStroke = optionalStroke else {
 			return self
 		}
@@ -104,7 +121,9 @@ extension String {
 	
 	/// - Parameter optionalStroke: string?
 	/// - Returns:  self || optionalStroke + self
-	public func addToHead(_ optionalStroke: String?) -> String {
+	public func addToHead(
+		_ optionalStroke: String?
+	) -> String {
 		guard let optionalStroke = optionalStroke else {
 			return self
 		}
