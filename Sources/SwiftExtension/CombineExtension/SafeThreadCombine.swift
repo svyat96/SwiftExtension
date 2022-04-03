@@ -9,8 +9,8 @@ import Combine
 import Foundation
 
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-struct AutoReceiveInMainQueue<Upstream: Publisher>: Publisher {
-	func receive<S>(subscriber: S) where S : Subscriber, Upstream.Failure == S.Failure, Upstream.Output == S.Input {
+public struct AutoReceiveInMainQueue<Upstream: Publisher>: Publisher {
+	public func receive<S>(subscriber: S) where S : Subscriber, Upstream.Failure == S.Failure, Upstream.Output == S.Input {
 		if Thread.isMainThread {
 			upstream
 				.receive(on: RunLoop.current)
@@ -22,8 +22,8 @@ struct AutoReceiveInMainQueue<Upstream: Publisher>: Publisher {
 			.receive(subscriber: subscriber)
 	}
 	
-	typealias Output = Upstream.Output
-	typealias Failure = Upstream.Failure
+	public typealias Output = Upstream.Output
+	public typealias Failure = Upstream.Failure
 	
 	let upstream: Upstream
 	
@@ -38,7 +38,7 @@ struct AutoReceiveInMainQueue<Upstream: Publisher>: Publisher {
 
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension Publisher {
-	func autoReceiveInMainQueue() -> AutoReceiveInMainQueue<Self> {
+	public func autoReceiveInMainQueue() -> AutoReceiveInMainQueue<Self> {
 		return AutoReceiveInMainQueue(upstream: self)
 	}
 }
