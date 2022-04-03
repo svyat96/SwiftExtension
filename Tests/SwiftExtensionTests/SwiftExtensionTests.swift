@@ -71,23 +71,36 @@ final class SwiftExtensionTests: XCTestCase {
 		XCTAssert(transformText == exampleResultText)
 	}
 	
-	var testCombineCancellable: AnyCancellable?
+	var testMainCombineCancellable: AnyCancellable?
+	var testGlobalCombineCancellable: AnyCancellable?
+	var testOnlyGlobalCombineCancellable: AnyCancellable?
+	
 	var timer: Timer?
 	@Published var testCombineValue: Int = 0
 	
 	func testCombine() throws {
-		testCombineCancellable = $testCombineValue
+		let completedExpectation = expectation(description: "Completed")
+		testMainCombineCancellable = $testCombineValue
 			.autoReceiveInMainQueue()
 			.sink { value in
-				print("IsMainThread: ", Thread.isMainThread)
-				print("Что то!", value)
+				XCTAssert(Thread.isMainThread, "Only main!")
 			}
 		
-//		timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-//			DispatchQueue.global(qos: .background).async {
-//				self.testCombineValue = 10
-//			}
-//		}
-//		sleep(1)
+		testGlobalCombineCancellable = $testCombineValue
+			.sink { value in
+				XCTAssert(Thread.isMainThread == false || Thread.isMainThread == true,  "Background && Main!")
+			}
+		
+		timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+			DispatchQueue.global(qos: .background).async { [weak self] in
+				self?.testOnlyGlobalCombineCancellable = self?.$testCombineValue
+					.sink { value in
+						XCTAssert(Thread.isMainThread == false, "Only background!")
+					}
+				self?.testCombineValue = 10
+				completedExpectation.fulfill()
+			}
+		}
+		waitForExpectations(timeout: 5, handler: nil)
 	}
 }
