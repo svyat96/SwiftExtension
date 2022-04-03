@@ -24,6 +24,11 @@ final class SwiftExtensionTests: XCTestCase {
 		nilFloat = 30.0
 		XCTAssert(nilFloat.nonOptional() == 30.0)
 		XCTAssert(nilFloat.nonOptional(20.0) == 30.0)
+		
+		var nilValue: (String, Double)? = nil
+		XCTAssert(nilValue.nonOptional(("20.0", 30.0)) == ("20.0", 30.0))
+		nilValue = ("20.0", 30.0)
+		XCTAssert(nilValue.nonOptional(("30.0", 30.0)) == ("20.0", 30.0))
 	}
 	
 	func testSafeInArray() throws {
