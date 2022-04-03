@@ -72,23 +72,17 @@ final class SwiftExtensionTests: XCTestCase {
 	
 	func testCombine() throws {
 		testCombineCancellable = $testCombineValue
-			.safeThread(safeThreadClosure: { (current, isMainThread) in
-				return current.receive(on: RunLoop.current)
-			})
-//			.safeThread(safeThreadClosure: { (current, isMainThread) in
-//				let scheduler: Scheduler = isMainThread ? RunLoop.current : DispatchQueue.main
-//				return current.receive(on: scheduler)
-//			})
-			.sink(receiveValue: { _ in
-				print(Thread.isMainThread)
-				print(self.testCombineValue)
-			})
-		
-		timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
-			DispatchQueue.global(qos: .background).async {
-				self.testCombineValue = 10
+			.autoReceiveInMainQueue()
+			.sink { value in
+				print("IsMainThread: ", Thread.isMainThread)
+				print("Что то!", value)
 			}
-		}
-		sleep(10)
+		
+//		timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+//			DispatchQueue.global(qos: .background).async {
+//				self.testCombineValue = 10
+//			}
+//		}
+//		sleep(1)
 	}
 }

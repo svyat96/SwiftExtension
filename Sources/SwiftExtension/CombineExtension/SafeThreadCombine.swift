@@ -9,42 +9,36 @@ import Combine
 import Foundation
 
 @available(macOS 10.15, *)
-struct SafeThreadCombine<Upstream: Publisher, S: Scheduler>: Publisher {
-	func receive<S>(subscriber: S) where S : Subscriber, Never == S.Failure, (currentPublisher: Upstream, isMainThread: Bool) == S.Input {
-		let value = subscriber.receive((upstream, Thread.isMainThread))
-	}
-	
-	typealias Output = (currentPublisher: Upstream, isMainThread: Bool)
-	typealias Failure = Never
-		
-	let upstream: Upstream
-	let safeThreadClosure: (Output) -> Publishers.ReceiveOn<Upstream, S>
-	
-	init(
-		upstream: Upstream,
-		safeThreadClosure: @escaping (Output) -> Publishers.ReceiveOn<Upstream, S>
-	) {
-		self.upstream = upstream
-		self.safeThreadClosure = safeThreadClosure
-	}
-	
-	final class EventSubscription<Target: Subscriber>: Subscription {
-			var target: Target?
-			func request(_ demand: Subscribers.Demand) {}
-
-			func cancel() {
-				target = nil
-			}
+struct AutoReceiveInMainQueue<Upstream: Publisher>: Publisher {
+	func receive<S>(subscriber: S) where S : Subscriber, Upstream.Failure == S.Failure, Upstream.Output == S.Input {
+		if Thread.isMainThread {
+			upstream
+				.receive(on: RunLoop.current)
+				.receive(subscriber: subscriber)
+			return
 		}
+		upstream
+			.receive(on: DispatchQueue.main)
+			.receive(subscriber: subscriber)
+	}
+	
+	typealias Output = Upstream.Output
+	typealias Failure = Upstream.Failure
+	
+	let upstream: Upstream
+	
+	init(upstream: Upstream) {
+		self.upstream = upstream
+	}
 }
+
+//private final class SafeThreadCombineSubscription<S: Subscriber>: Subscription where S.Input == Publisher {
+//
+//}
 
 @available(macOS 10.15, *)
 extension Publisher {
-	func safeThread<S: Scheduler>(
-		safeThreadClosure: @escaping ((Self, Bool)) -> Publishers.ReceiveOn<Self, S>
-	) -> SafeThreadCombine<Self, S> {
-		return SafeThreadCombine(
-			upstream: self,
-			safeThreadClosure: safeThreadClosure)
+	func autoReceiveInMainQueue() -> AutoReceiveInMainQueue<Self> {
+		return AutoReceiveInMainQueue(upstream: self)
 	}
 }
