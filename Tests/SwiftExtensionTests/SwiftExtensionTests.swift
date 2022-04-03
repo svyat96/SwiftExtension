@@ -69,4 +69,30 @@ final class SwiftExtensionTests: XCTestCase {
 		
 		XCTAssert(transformText == exampleResultText)
 	}
+	
+	func testSum() throws {
+		let intValue: Int = 20
+		let doubleValue: Double = 30.0
+		let floatValue: Float = 50.0
+		let cgfloatValue: CGFloat = 35.0
+		
+		XCTAssert(floatValue.sum(doubleValue) == 80.0)
+		XCTAssert(floatValue.sum(intValue) == 70.0)
+		
+		XCTAssert(doubleValue.sum(intValue).sum(floatValue) == 100.0)
+		XCTAssert(cgfloatValue.sum(floatValue) == 85.0)
+	}
+	
+	func testSubtraction() throws {
+		let intValue: Int = 20
+		let doubleValue: Double = 30.5
+		let floatValue: Float = 24.5
+		let cgfloatValue: CGFloat = 5.7
+		
+		XCTAssert(cgfloatValue.subtraction(intValue) == -14.3)
+		XCTAssert(doubleValue.subtraction(intValue).subtraction(cgfloatValue) == 4.8)
+		XCTAssert(intValue.subtraction(doubleValue) == -10)
+		XCTAssert(intValue.subtraction(cgfloatValue).subtraction(doubleValue) == -15)
+		XCTAssert(floatValue.subtraction(intValue) == 4.5)
+	}
 }
