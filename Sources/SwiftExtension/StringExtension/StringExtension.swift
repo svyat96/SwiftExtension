@@ -35,6 +35,20 @@ extension String {
 		return String(self[firstIndex...])
 	}
 	
+	
+	/// Returns text without a defined last character
+	/// - Parameter character: Symbol to be removed
+	/// - Returns: Text without an extra character at the end
+	public func textWithoutCharacterPostfix(
+		character: Character
+	) -> String {
+		reversed()
+			.toString()
+			.textWithoutCharacterPrefix(character: character)
+			.reversed()
+			.toString()
+	}
+	
 	/// Returns the text with a capital letter of the first word if it was small.
 	public func capitalizingFirstLetter() -> String {
 		return prefix(1).capitalized + dropFirst()
@@ -138,5 +152,11 @@ extension String {
 	/// - Returns: Int(self)
 	public func toInt() -> Int? {
 		return Int(self)
+	}
+}
+
+extension Array where Element == Character {
+	public func toString() -> String {
+		return String(self)
 	}
 }

@@ -101,4 +101,26 @@ final class SwiftExtensionTests: XCTestCase {
 		}
 		waitForExpectations(timeout: 5, handler: nil)
 	}
+	
+	func testTextWithoutPostfix() throws {
+		var testValue: String = "lalala\"lala\""
+		var successResult: String = "lalala\"lala"
+		
+		XCTAssert(testValue.textWithoutCharacterPostfix(character: "\"") == successResult)
+		
+		testValue = ""
+		successResult = ""
+		
+		XCTAssert(testValue.textWithoutCharacterPostfix(character: "\"") == successResult)
+		
+		testValue = "lalalalala)))))))))"
+		successResult = "lalalalala"
+		
+		XCTAssert(testValue.textWithoutCharacterPostfix(character: ")") == successResult)
+		
+		testValue = ")))))))))))"
+		successResult = ""
+		
+		XCTAssert(testValue.textWithoutCharacterPostfix(character: ")") == successResult)
+	}
 }
