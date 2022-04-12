@@ -156,6 +156,7 @@ extension String {
 }
 
 extension Array where Element == Character {
+	/// - Returns: String(self)
 	public func toString() -> String {
 		return String(self)
 	}
