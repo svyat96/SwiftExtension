@@ -175,4 +175,38 @@ final class SwiftExtensionTests: XCTestCase {
 		XCTAssert(intValue.multiplication(cgfloatValue).multiplication(doubleValue) == 300)
 		XCTAssert(floatValue.multiplication(intValue) == 49.0)
 	}
+	
+	func testAnyOptionalVa() throws {
+		var value: String? = "Good bye!"
+		var result = value
+			.orOptional("Hello!")
+			.nonOptional("Privet!")
+		XCTAssert(result == value)
+		
+		value = nil
+		
+		result = value
+			.orOptional("Hello!")
+			.nonOptional("Privet!")
+		XCTAssert(result == "Hello!")
+		
+		result = value
+			.orOptional(nil)
+			.nonOptional("Privet!")
+		XCTAssert(result == "Privet!")
+	}
+	
+	func testAppendToArrayInDictionary() throws {
+		var dictionary: [String: [Int]] = ["value": [0, 1, 2]]
+		
+		XCTAssert(dictionary["v"] == nil)
+		
+		dictionary.appendWithCreateIfNeed(key: "v", 2)
+		
+		XCTAssert(dictionary["v"] == [2])
+		
+		dictionary.appendWithCreateIfNeed(key: "v", 3)
+		
+		XCTAssert(dictionary["v"] == [2, 3])
+	}
 }

@@ -21,9 +21,20 @@ extension Optional where Wrapped: NonOptionalProtocol {
 
 extension Optional {
 	/// Get some value or defaultValue
+	/// - Parameter defaultValue: defaultValue
+	/// - Returns: some ?? defaultValue
 	public func nonOptional(
 		_ defaultValue: Wrapped
 	) -> Wrapped {
 		return self ?? defaultValue
+	}
+	
+	/// Get some value or different optionalValue
+	/// - Parameter optionalValue: optionalValue
+	/// - Returns: self ?? optionalValue
+	public func orOptional(
+		_ optionalValue: Self
+	) -> Self {
+		return self ?? optionalValue
 	}
 }
