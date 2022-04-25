@@ -100,6 +100,8 @@ final class SwiftExtensionTests: XCTestCase {
 			}
 		}
 		waitForExpectations(timeout: 5, handler: nil)
+	}
+	
 	func testSum() throws {
 		let intValue: Int = 20
 		let doubleValue: Double = 30.0
@@ -159,6 +161,8 @@ final class SwiftExtensionTests: XCTestCase {
 		successResult = ""
 		
 		XCTAssert(testValue.textWithoutCharacterPostfix(character: ")") == successResult)
+	}
+	
 	func testMultiplication() throws {
 		let intValue: Int = 2
 		let doubleValue: Double = 30.5
