@@ -95,4 +95,30 @@ final class SwiftExtensionTests: XCTestCase {
 		XCTAssert(intValue.subtraction(cgfloatValue).subtraction(doubleValue) == -15)
 		XCTAssert(floatValue.subtraction(intValue) == 4.5)
 	}
+	
+	func testDivision() throws {
+		let intValue: Int = 2
+		let doubleValue: Double = 30.0
+		let floatValue: Float = 24.5
+		let cgfloatValue: CGFloat = 5.0
+		
+		XCTAssert(cgfloatValue.division(intValue) == 2.5)
+		XCTAssert(doubleValue.division(intValue).division(cgfloatValue) == 3.0)
+		XCTAssert(intValue.division(doubleValue) == 0)
+		XCTAssert(intValue.division(cgfloatValue).division(doubleValue) == 0)
+		XCTAssert(floatValue.division(intValue) == 12.25)
+	}
+	
+	func testMultiplication() throws {
+		let intValue: Int = 2
+		let doubleValue: Double = 30.5
+		let floatValue: Float = 24.5
+		let cgfloatValue: CGFloat = 5.7
+		
+		XCTAssert(cgfloatValue.multiplication(intValue) == 11.4)
+		XCTAssert(doubleValue.multiplication(intValue).multiplication(cgfloatValue) == 347.7)
+		XCTAssert(intValue.multiplication(doubleValue) == 60)
+		XCTAssert(intValue.multiplication(cgfloatValue).multiplication(doubleValue) == 300)
+		XCTAssert(floatValue.multiplication(intValue) == 49.0)
+	}
 }
