@@ -40,4 +40,9 @@ extension BinaryInteger {
 	public func sum<T: BinaryFloatingPoint>(_ value: T) -> Self {
 		return self.sum(Self(value))
 	}
+	
+	/// - Returns: T(self) + value
+	public func sumTo<T: BinaryFloatingPoint>(_ value: T) -> T {
+		return T(self).sum(value)
+	}
 }

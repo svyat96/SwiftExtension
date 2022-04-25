@@ -39,4 +39,9 @@ extension BinaryInteger {
 	public func multiplication<T: BinaryFloatingPoint>(_ value: T) -> Self {
 		return self.multiplication(Self(value))
 	}
+	
+	/// - Returns: T(self) * value
+	public func multiplicationTo<T: BinaryFloatingPoint>(_ value: T) -> T {
+		return T(self).multiplication(value)
+	}
 }

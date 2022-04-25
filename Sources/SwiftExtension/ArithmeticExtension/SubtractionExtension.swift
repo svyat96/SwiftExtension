@@ -39,4 +39,9 @@ extension BinaryInteger {
 	public func subtraction<T: BinaryFloatingPoint>(_ value: T) -> Self {
 		return self.subtraction(Self(value))
 	}
+	
+	/// - Returns: T(self) - value
+	public func subtractionTo<T: BinaryFloatingPoint>(_ value: T) -> T {
+		return T(self).subtraction(value)
+	}
 }

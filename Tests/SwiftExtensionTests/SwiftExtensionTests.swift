@@ -113,6 +113,8 @@ final class SwiftExtensionTests: XCTestCase {
 		
 		XCTAssert(doubleValue.sum(intValue).sum(floatValue) == 100.0)
 		XCTAssert(cgfloatValue.sum(floatValue) == 85.0)
+		
+		XCTAssert(intValue.sumTo(cgfloatValue) == 55.0)
 	}
 	
 	func testSubtraction() throws {
@@ -126,6 +128,8 @@ final class SwiftExtensionTests: XCTestCase {
 		XCTAssert(intValue.subtraction(doubleValue) == -10)
 		XCTAssert(intValue.subtraction(cgfloatValue).subtraction(doubleValue) == -15)
 		XCTAssert(floatValue.subtraction(intValue) == 4.5)
+		
+		XCTAssert(intValue.subtractionTo(cgfloatValue) == 14.3)
 	}
 	
 	func testDivision() throws {
@@ -139,6 +143,8 @@ final class SwiftExtensionTests: XCTestCase {
 		XCTAssert(intValue.division(doubleValue) == 0)
 		XCTAssert(intValue.division(cgfloatValue).division(doubleValue) == 0)
 		XCTAssert(floatValue.division(intValue) == 12.25)
+		
+		XCTAssert(intValue.divisionTo(cgfloatValue) == 0.4)
 	}
 	
 	func testTextWithoutPostfix() throws {
@@ -174,9 +180,11 @@ final class SwiftExtensionTests: XCTestCase {
 		XCTAssert(intValue.multiplication(doubleValue) == 60)
 		XCTAssert(intValue.multiplication(cgfloatValue).multiplication(doubleValue) == 300)
 		XCTAssert(floatValue.multiplication(intValue) == 49.0)
+		
+		XCTAssert(intValue.multiplicationTo(2.7) == 5.4)
 	}
 	
-	func testAnyOptionalVa() throws {
+	func testAnyOptionalValue() throws {
 		var value: String? = "Good bye!"
 		var result = value
 			.orOptional("Hello!")

@@ -40,4 +40,9 @@ extension BinaryInteger {
 	public func division<T: BinaryFloatingPoint>(_ value: T) -> Self {
 		return self.division(Self(value))
 	}
+	
+	/// - Returns: T(self) / value
+	public func divisionTo<T: BinaryFloatingPoint>(_ value: T) -> T {
+		return T(self).division(value)
+	}
 }
