@@ -217,4 +217,16 @@ final class SwiftExtensionTests: XCTestCase {
 		
 		XCTAssert(dictionary["v"] == [2, 3])
 	}
+	
+	func testTernary() throws {
+		XCTAssert(
+			Ternary.get(
+				if: .value(20 > 30),
+				  true: .value(true),
+				  false: .pipelineTernary(
+					.value(20 < 40)
+				  )
+			)
+		)
+	}
 }
