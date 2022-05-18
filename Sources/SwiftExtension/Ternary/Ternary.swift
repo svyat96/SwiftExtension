@@ -13,10 +13,9 @@ import Foundation
 /// - case func: (() -> T)
 /// - case pipelineTernary: (TernaryEnum<T>)
 /// - var result: return actual case
-indirect public enum TernaryEnum<T: Any> {
+public enum TernaryEnum<T: Any> {
 	case value(T)
 	case `func`(() -> T)
-	case pipelineTernary(TernaryEnum<T>)
 	
 	fileprivate var result: T {
 		switch self {
@@ -24,8 +23,6 @@ indirect public enum TernaryEnum<T: Any> {
 			return value
 		case .func(let funcValue):
 			return funcValue()
-		case .pipelineTernary(let pipelineFuncValue):
-			return pipelineFuncValue.result
 		}
 	}
 }

@@ -223,9 +223,9 @@ final class SwiftExtensionTests: XCTestCase {
 			Ternary.get(
 				if: .value(20 > 30),
 				  true: .value(true),
-				  false: .pipelineTernary(
-					.value(20 < 40)
-				  )
+				  false: .func({
+					  false
+				  })
 			)
 		)
 	}
