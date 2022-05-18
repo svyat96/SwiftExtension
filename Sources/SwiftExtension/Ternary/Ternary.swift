@@ -18,7 +18,7 @@ indirect public enum TernaryEnum<T: Any> {
 	case `func`(() -> T)
 	case pipelineTernary(TernaryEnum<T>)
 	
-	public var result: T {
+	fileprivate var result: T {
 		switch self {
 		case .value(let value):
 			return value
