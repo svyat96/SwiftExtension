@@ -71,37 +71,6 @@ final class SwiftExtensionTests: XCTestCase {
 		XCTAssert(transformText == exampleResultText)
 	}
 	
-	var testOnlyMainCombineCancellable: AnyCancellable?
-	var testOnlyGlobalCombineCancellable: AnyCancellable?
-	
-	var timer: Timer?
-	@Published var testCombineValue: Int = 0
-	
-	func testCombine() throws {
-		let completedExpectation = expectation(description: "Completed")
-		testOnlyMainCombineCancellable = $testCombineValue
-			.autoReceiveInMainQueue()
-			.sink { value in
-				print("Only main run!")
-				XCTAssert(Thread.isMainThread, "Only main!")
-				print("Only main complete!")
-			}
-		
-		timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-			DispatchQueue.global(qos: .background).async { [weak self] in
-				self?.testOnlyGlobalCombineCancellable = self?.$testCombineValue
-					.sink { value in
-						print("Only background run!")
-						XCTAssert(Thread.isMainThread == false, "Only background!")
-						print("Only background complete!")
-					}
-				self?.testCombineValue = 10
-				completedExpectation.fulfill()
-			}
-		}
-		waitForExpectations(timeout: 5, handler: nil)
-	}
-	
 	func testSum() throws {
 		let intValue: Int = 20
 		let doubleValue: Double = 30.0
@@ -218,6 +187,18 @@ final class SwiftExtensionTests: XCTestCase {
 		XCTAssert(dictionary["v"] == [2, 3])
 	}
 	
+	func testBoolean() {
+		let one: Bool = true || false
+		let two: Bool = true && true
+		let three: Bool = true || true
+		let four: Bool = false && false
+		
+		XCTAssert(one == true.or(false))
+		XCTAssert(two == true.and(true))
+		XCTAssert(three != true.xor(true))
+		XCTAssert(four == false.and(false))
+	}
+	
 	func testTernary() throws {
 		XCTAssert(
 			Ternary.get(
@@ -228,5 +209,10 @@ final class SwiftExtensionTests: XCTestCase {
 				  })
 			)
 		)
+	}
+	
+	func testTransform() {
+		XCTAssert(20 == 20.0.toBinaryInteger())
+		XCTAssert(20.0 == 20.toBinaryFloatingPoint())
 	}
 }
