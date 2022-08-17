@@ -215,4 +215,9 @@ final class SwiftExtensionTests: XCTestCase {
 		XCTAssert(20 == 20.0.toBinaryInteger())
 		XCTAssert(20.0 == 20.toBinaryFloatingPoint())
 	}
+	
+	func testNegative() {
+		XCTAssert(-20 == 20.negative())
+		XCTAssert(-30.0 == 30.0.negative())
+	}
 }

@@ -18,3 +18,15 @@ extension BinaryInteger {
 		return T(self)
 	}
 }
+
+extension BinaryFloatingPoint {
+	public func negative() -> Self {
+		return -self
+	}
+}
+
+extension BinaryInteger where Self: SignedInteger {
+	public func negative() -> Self {
+		return -self
+	}
+}
