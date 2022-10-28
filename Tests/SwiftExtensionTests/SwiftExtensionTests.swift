@@ -202,7 +202,7 @@ final class SwiftExtensionTests: XCTestCase {
 	func testTernary() throws {
 		XCTAssert(
 			Ternary.get(
-				if: .value(20 > 30),
+				if: .value(20 < 30),
 				  true: .value(true),
 				  false: .func({
 					  false
@@ -219,5 +219,23 @@ final class SwiftExtensionTests: XCTestCase {
 	func testNegative() {
 		XCTAssert(-20 == 20.negative())
 		XCTAssert(-30.0 == 30.0.negative())
+	}
+	
+	func testMoreDictionary() {
+		let keyPrivet = "Privet"
+		let keyPoka = "Poka"
+		let values: [String: [Int: Double]]
+		values = [:]
+			.setValueNon(key: keyPrivet) {
+				$0.setValue(key: 300, 29.0)
+			}
+			.setValueNon(key: keyPoka) {
+				$0.setValue(key: 200, 30.0).setValue(key: 400, 75.0)
+			}.setValueNon(key: keyPrivet) {
+				$0.setValue(key: 402, 89.0)
+			}.setValueNon(key: keyPrivet) {$0}
+		
+		XCTAssert(values == [keyPrivet: [300: 29.0, 402: 89.0], keyPoka: [200: 30.0, 400: 75.0]])
+		print(values)
 	}
 }
