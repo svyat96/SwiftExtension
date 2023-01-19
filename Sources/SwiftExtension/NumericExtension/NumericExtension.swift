@@ -30,3 +30,9 @@ extension BinaryInteger where Self: SignedInteger {
 		return -self
 	}
 }
+
+extension BinaryFloatingPoint {
+	public func ceil() -> Self {
+		return Darwin.ceil(self)
+	}
+}

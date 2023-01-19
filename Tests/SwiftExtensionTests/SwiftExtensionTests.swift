@@ -238,4 +238,10 @@ final class SwiftExtensionTests: XCTestCase {
 		XCTAssert(values == [keyPrivet: [300: 29.0, 402: 89.0], keyPoka: [200: 30.0, 400: 75.0]])
 		print(values)
 	}
+	
+	func testCeil() {
+		XCTAssert(ceil(20.0) == 20.0.ceil())
+		XCTAssert(ceil(20.3) == 20.3.ceil())
+		XCTAssert(ceil(-1) == -0.2.ceil())
+	}
 }
