@@ -35,6 +35,7 @@ final class SwiftExtensionTests: XCTestCase {
 		let array: [String] = ["Privet", "Hello"]
 		XCTAssert(array[safe: 0] == "Privet")
 		XCTAssert(array[safe: 3] == nil)
+		XCTAssert(array[safe: -1] == nil)
 		
 		let emptyArray: [String] = []
 		XCTAssert(emptyArray[safe: 20] == nil)

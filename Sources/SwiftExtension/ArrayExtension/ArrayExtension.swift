@@ -12,6 +12,6 @@ extension Array {
 	public subscript(
 		safe index: Int
 	) -> Element? {
-		return count > index ? self[index] : nil
+		return (count > index).and(index >= 0) ? self[index] : nil
 	}
 }
