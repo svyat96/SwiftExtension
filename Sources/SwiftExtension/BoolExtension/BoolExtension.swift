@@ -25,25 +25,36 @@ extension Bool {
 	
 	
 	/// Переводим Bool в целое число
-	/// - Returns: true == 1, false == 0
-	public func toInt<T: BinaryInteger>() -> T {
+	/// - Parameters:
+	///   - trueValue: По умолчанию 1
+	///   - falseValue: По умолчанию 0
+	/// - Returns: trueValue || falseValue
+	public func toInt<T: BinaryInteger>(
+		trueValue: T = 1,
+		falseValue: T = 0
+	) -> T {
 		return Ternary
 			.get(
 				if: .value(self),
-				true: .value(1),
-				false: .value(0)
+				true: .value(trueValue),
+				false: .value(falseValue)
 			)
 	}
 	
-	
 	/// Переводим Bool в дробное значение
-	/// - Returns: true == 1.0, false == 0.0
-	public func toFloat<T: BinaryFloatingPoint>() -> T {
+	/// - Parameters:
+	///   - trueValue: По умолчанию 1.0
+	///   - falseValue: По умолчанию 0.0
+	/// - Returns: trueValue || falseValue
+	public func toFloat<T: BinaryFloatingPoint>(
+		trueValue: T = 1.0,
+		falseValue: T = 0.0
+	) -> T {
 		return Ternary
 			.get(
 				if: .value(self),
-				true: .value(1.0),
-				false: .value(0.0)
+				true: .value(trueValue),
+				false: .value(falseValue)
 			)
 	}
 }

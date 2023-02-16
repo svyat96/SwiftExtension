@@ -256,5 +256,13 @@ final class SwiftExtensionTests: XCTestCase {
 		XCTAssert(false.toInt() != 1)
 		XCTAssert(true.toFloat() != 0.0)
 		XCTAssert(false.toFloat() != 1.0)
+		
+		XCTAssert(true.toInt(trueValue: 20) == 20)
+		XCTAssert(false.toInt(trueValue: 20) == 0)
+		XCTAssert(false.toInt(trueValue: 20) != 20)
+		
+		XCTAssert(true.toFloat(trueValue: 20.0) == 20.0)
+		XCTAssert(false.toFloat(trueValue: 20.0) == 0.0)
+		XCTAssert(false.toFloat(trueValue: 20.0) != 20.0)
 	}
 }
