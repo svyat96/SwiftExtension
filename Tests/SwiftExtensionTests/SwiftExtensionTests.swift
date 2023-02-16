@@ -245,4 +245,16 @@ final class SwiftExtensionTests: XCTestCase {
 		XCTAssert(ceil(20.3) == 20.3.ceil())
 		XCTAssert(ceil(-1) == -0.2.ceil())
 	}
+	
+	func testTransformBoolToNumber() {
+		XCTAssert(true.toInt() == 1)
+		XCTAssert(false.toInt() == 0)
+		XCTAssert(true.toFloat() == 1.0)
+		XCTAssert(false.toFloat() == 0.0)
+		
+		XCTAssert(true.toInt() != 0)
+		XCTAssert(false.toInt() != 1)
+		XCTAssert(true.toFloat() != 0.0)
+		XCTAssert(false.toFloat() != 1.0)
+	}
 }
