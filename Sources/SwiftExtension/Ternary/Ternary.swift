@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /// Abstract value
 /// - case value:(T)
 /// - case func: (() -> T)
@@ -26,6 +25,7 @@ public enum TernaryEnum<T: Any> {
 		}
 	}
 }
+
 //Abstract ternary logic
 public enum Ternary {
 	/// Readable ternary
