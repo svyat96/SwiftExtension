@@ -265,4 +265,25 @@ final class SwiftExtensionTests: XCTestCase {
 		XCTAssert(false.toFloat(trueValue: 20.0) == 0.0)
 		XCTAssert(false.toFloat(trueValue: 20.0) != 20.0)
 	}
+	
+	func testRemovedIndexes() {
+		let firstValue = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+		
+		let indexesNeedRemove = [1, 5, 9, 100]
+		let indexesNeedRemoveNonSorted = [100, 5, 1, 9]
+		
+		let removedValueFirst = firstValue.removeAll(sorted: indexesNeedRemove)
+		
+		let removedValueSeconde = firstValue.removeAll(nonSorted: indexesNeedRemoveNonSorted)
+		
+		let successValues = [1, 3, 4, 5, 7, 8, 9]
+		
+		XCTAssert(removedValueFirst == removedValueSeconde)
+		XCTAssert(removedValueFirst == successValues)
+		
+		let emptyInt: [Int] = []
+		
+		XCTAssert(emptyInt.removeAll(sorted: indexesNeedRemove) == emptyInt)
+		XCTAssert(emptyInt.removeAll(nonSorted: indexesNeedRemoveNonSorted) == emptyInt)
+	}
 }

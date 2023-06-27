@@ -5,13 +5,29 @@
 //  Created by Святослав Спорыхин on 8/17/22.
 //
 
-import Foundation
+import UIKit
 
 extension BinaryFloatingPoint {
 	/// Преобразует в целое число
 	/// - Returns: Тип целого числа
 	public func toBinaryInteger<T: BinaryInteger>() -> T {
 		return T(self)
+	}
+}
+
+extension Int {
+	/// Создаем IndexPath
+	/// - Parameter section: Номер секции
+	/// - Returns: .init(row: self, section: section)
+	public func toIndexPath(section: Int) -> IndexPath {
+		return .init(row: self, section: section)
+	}
+	
+	/// Создаем IndexPath
+	/// - Parameter row: Номер ячейки
+	/// - Returns: row.getIndexPath(section: self)
+	public func toIndexPath(row: Int) -> IndexPath {
+		return row.toIndexPath(section: self)
 	}
 }
 
