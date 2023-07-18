@@ -33,12 +33,9 @@ extension Bool {
 		trueValue: T = 1,
 		falseValue: T = 0
 	) -> T {
-		return Ternary
-			.get(
-				if: .value(self),
-				true: .value(trueValue),
-				false: .value(falseValue)
-			)
+		return self.getIf(
+			true: .value(trueValue),
+			false: .value(falseValue))
 	}
 	
 	/// Переводим Bool в дробное значение
@@ -50,12 +47,29 @@ extension Bool {
 		trueValue: T = 1.0,
 		falseValue: T = 0.0
 	) -> T {
-		return Ternary
-			.get(
-				if: .value(self),
-				true: .value(trueValue),
-				false: .value(falseValue)
-			)
+		return self.getIf(
+			true: .value(trueValue),
+			false: .value(falseValue))
+	}
+	
+	public func getIf<T>(
+		true: TernaryEnum<T>,
+		false: TernaryEnum<T>
+	) -> T {
+		return Ternary.get(
+			if: .value(self),
+			true: `true`,
+			false: `false`)
+	}
+	
+	public func getIf<T>(
+		true: TernaryEnum<T>,
+		false: TernaryEnum<T> = .value(.defaultValue)
+	) -> T where T: NonOptionalProtocol {
+		return Ternary.get(
+			if: .value(self),
+			true: `true`,
+			false: `false`)
 	}
 }
 

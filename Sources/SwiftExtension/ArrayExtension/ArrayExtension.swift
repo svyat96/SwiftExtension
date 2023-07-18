@@ -23,13 +23,13 @@ extension Array {
 		
 		return enumerated()
 			.compactMap { value in
-				Ternary.get(
-					if: .value(value.offset == firstIndex),
-					true: .func({
-						firstIndex = indexesSequence.next()
-						return nil
-					}),
-					false: .value(value.element))
+				return (value.offset == firstIndex)
+					.getIf(
+						true: .func({
+							firstIndex = indexesSequence.next()
+							return nil
+						}),
+						false: .value(value.element))
 			}
 	}
 	
@@ -49,15 +49,14 @@ extension Array {
 	public func addToTail(
 		_ values: Self
 	) -> Self {
-		return Ternary.get(
-			if: .value(values.isEmpty),
-			true: .value(self),
-			false: .func({
-				var result: Self = self
-				result.append(contentsOf: values)
-				return result
-			})
-		)
+		return values.isEmpty
+			.getIf(
+				true: .value(self),
+				false: .func({
+					var result: Self = self
+					result.append(contentsOf: values)
+					return result
+				}))
 	}
 }
 

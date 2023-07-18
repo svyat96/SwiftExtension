@@ -309,4 +309,14 @@ final class SwiftExtensionTests: XCTestCase {
 			.addToTail(45.0
 				.addToTail(20)) == [20.0, 30.0, 45.0, 20.0])
 	}
+	
+	func testBoolTernary() {
+		XCTAssert(
+			(20 < 30).getIf(
+				true: .value(true),
+				false: .func({ false }))
+		)
+		
+		XCTAssert((20 < 30).getIf(true: .value(10)) == 10)
+	}
 }

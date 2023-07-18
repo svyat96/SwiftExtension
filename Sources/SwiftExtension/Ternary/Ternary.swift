@@ -28,11 +28,13 @@ public enum TernaryEnum<T: Any> {
 
 //Abstract ternary logic
 public enum Ternary {
+	
 	/// Readable ternary
 	/// - Parameter if: Condition
 	/// - Parameter true: True completion
 	/// - Parameter false: False completion
 	/// - Returns: Actual completion
+	@available(*, deprecated, message: "Используйте getIf у Bool!")
 	static public func get<T: Any>(
 		if: TernaryEnum<Bool>,
 		true: TernaryEnum<T>,
