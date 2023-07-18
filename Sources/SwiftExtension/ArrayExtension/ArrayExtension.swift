@@ -40,3 +40,24 @@ extension Array {
 		return removeAll(sorted: sorted)
 	}
 }
+
+//MARK: - addToTail
+extension Array {
+	/// Добавления массива к хвосту другого массива
+	/// - Parameter values: Массив который нужно прибавить
+	/// - Returns: возвращает комбинацию массива
+	public func addToTail(
+		_ values: Self
+	) -> Self {
+		return Ternary.get(
+			if: .value(values.isEmpty),
+			true: .value(self),
+			false: .func({
+				var result: Self = self
+				result.append(contentsOf: values)
+				return result
+			})
+		)
+	}
+}
+

@@ -286,4 +286,27 @@ final class SwiftExtensionTests: XCTestCase {
 		XCTAssert(emptyInt.removeAll(sorted: indexesNeedRemove) == emptyInt)
 		XCTAssert(emptyInt.removeAll(nonSorted: indexesNeedRemoveNonSorted) == emptyInt)
 	}
+	
+	func testCGExtension() {
+		let testValue: CGFloat = 20.0
+		let testValueSecond: CGFloat = 300
+		let finalValue: CGRect = testValue
+			.add(x: 10.0)
+			.add(
+				size: testValueSecond
+					.add(height: 30.0))
+		
+		let succesValue: CGRect = .init(x: 10, y: 20, width: 300, height: 30)
+		XCTAssert(finalValue == succesValue)
+		
+		XCTAssert(succesValue.width.add(height: 40.0) == CGSize(width: succesValue.width, height: 40.0))
+	}
+	
+	func testConcatenationProtocol() {
+		XCTAssert(10.addToTail(20) == [10, 20])
+		XCTAssert(20.0
+			.addToTail(30.0)
+			.addToTail(45.0
+				.addToTail(20)) == [20.0, 30.0, 45.0, 20.0])
+	}
 }
