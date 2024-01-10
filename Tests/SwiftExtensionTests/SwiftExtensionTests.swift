@@ -341,7 +341,7 @@ final class SwiftExtensionTests: XCTestCase {
 		XCTAssert(startValue.addToHead("P", 5) == "PPPPP world!")
 		XCTAssert("B".addToHead("A", 5).addToHead("C", 5) == "CCCCCAAAAAB")
 		XCTAssert("".addToHead("A", 5) == "AAAAA")
-		XCTAssert("Value!".addSpaceToHead(3) == "   Value!")
+		XCTAssert("Value!".addToHead(.space, 3) == "   Value!")
 		XCTAssert("".addToHead("", 20) == "")
 		XCTAssert("pppp".addToHead("", 20) == "pppp")
 	}

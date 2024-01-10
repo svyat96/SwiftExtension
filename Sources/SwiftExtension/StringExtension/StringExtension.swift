@@ -154,18 +154,6 @@ extension String {
 		return Int(self)
 	}
 	
-	
-	/// Добавление в начало n количество пробелов
-	/// - Parameter countSpace: Количество пробелов
-	/// - Returns: (" " * countSpace) + self
-	public func addSpaceToHead(
-		_ countSpace: Int = 1
-	) -> String {
-		return String.space
-			.multiplication(countSpace)
-			.addToTail(self)
-	}
-	
 	/// Добавление в начало n количество символов
 	/// - Parameters:
 	///   - symbol: Символ который будет повторятся
