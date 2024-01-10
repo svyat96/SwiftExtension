@@ -319,4 +319,30 @@ final class SwiftExtensionTests: XCTestCase {
 		
 		XCTAssert((20 < 30).getIf(true: .value(10)) == 10)
 	}
+	
+	func testStringCharacterMultiplication() {
+		let charT: Character = "T"
+		let charSpace: Character = " "
+		
+		XCTAssert(charT.multiplication(5) == "TTTTT")
+		XCTAssert(charSpace.multiplication(5) == "     ")
+		XCTAssert(charT.multiplication(0) == "")
+		XCTAssert(charSpace.multiplication(0) == "")
+		
+		XCTAssert("Prv".multiplication(5) == "PrvPrvPrvPrvPrv")
+		XCTAssert("".multiplication(20) == "")
+		XCTAssert("Prv".multiplication(0) == "")
+		XCTAssert("".multiplication(0) == "")
+	}
+	
+	func testAddToHeadNCountSymbol() {
+		let startValue: String = " world!"
+		
+		XCTAssert(startValue.addToHead("P", 5) == "PPPPP world!")
+		XCTAssert("B".addToHead("A", 5).addToHead("C", 5) == "CCCCCAAAAAB")
+		XCTAssert("".addToHead("A", 5) == "AAAAA")
+		XCTAssert("Value!".addSpaceToHead(3) == "   Value!")
+		XCTAssert("".addToHead("", 20) == "")
+		XCTAssert("pppp".addToHead("", 20) == "pppp")
+	}
 }

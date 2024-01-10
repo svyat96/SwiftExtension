@@ -153,6 +153,32 @@ extension String {
 	public func toInt() -> Int? {
 		return Int(self)
 	}
+	
+	
+	/// Добавление в начало n количество пробелов
+	/// - Parameter countSpace: Количество пробелов
+	/// - Returns: (" " * countSpace) + self
+	public func addSpaceToHead(
+		_ countSpace: Int = 1
+	) -> String {
+		return String.space
+			.multiplication(countSpace)
+			.addToTail(self)
+	}
+	
+	/// Добавление в начало n количество символов
+	/// - Parameters:
+	///   - symbol: Символ который будет повторятся
+	///   - countSymbol: Количество повторений
+	/// - Returns: (symbol * countSymbol) + self
+	public func addToHead(
+		_ symbol: String,
+		_ countSymbol: Int = 1
+	) -> String {
+		symbol
+			.multiplication(countSymbol)
+			.addToTail(self)
+	}
 }
 
 extension Array where Element == Character {

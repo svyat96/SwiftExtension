@@ -45,3 +45,17 @@ extension BinaryInteger {
 		return T(self).multiplication(value)
 	}
 }
+
+extension String {
+	/// - Returns: self * value
+	public func multiplication(_ value: Int) -> String {
+		return Self.init(repeating: self, count: value)
+	}
+}
+
+extension Character {
+	/// - Returns: self * value
+	public func multiplication(_ value: Int) -> String {
+		return description.multiplication(value)
+	}
+}
