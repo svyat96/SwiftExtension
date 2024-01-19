@@ -66,7 +66,7 @@ extension Bool {
 	}
 	
 	public func getIf<T>(
-		true: TernaryEnum<T>,
+		true: TernaryEnum<T> = .value(.defaultValue),
 		false: TernaryEnum<T> = .value(.defaultValue)
 	) -> T where T: NonOptionalProtocol {
 		return Ternary.get(

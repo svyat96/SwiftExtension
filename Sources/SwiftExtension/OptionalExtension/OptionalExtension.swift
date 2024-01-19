@@ -19,6 +19,12 @@ extension Optional where Wrapped: NonOptionalProtocol {
 	}
 }
 
+extension Optional: NonOptionalProtocol {
+	public static var defaultValue: Optional<Wrapped> {
+		nil
+	}
+}
+
 extension Optional {
 	/// Get some value or defaultValue
 	/// - Parameter defaultValue: defaultValue
@@ -38,3 +44,5 @@ extension Optional {
 		return self ?? optionalValue
 	}
 }
+
+

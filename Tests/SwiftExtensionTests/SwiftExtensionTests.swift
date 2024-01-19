@@ -318,6 +318,16 @@ final class SwiftExtensionTests: XCTestCase {
 		)
 		
 		XCTAssert((20 < 30).getIf(true: .value(10)) == 10)
+		
+		let optionalStrFirst: String? = true.getIf(true: .value("Privet!"))
+		let optionalStrSecond: String? = true.getIf(false: .value("Privet!"))
+		let optionalStrThree: String? = true.getIf(true: .value("Privet!"), false: .value("Poka!"))
+		let optionalStrFour: String? = true.getIf()
+		
+		XCTAssert(optionalStrFirst == "Privet!")
+		XCTAssert(optionalStrSecond == nil)
+		XCTAssert(optionalStrThree == "Privet!")
+		XCTAssert(optionalStrFour == nil)
 	}
 	
 	func testStringCharacterMultiplication() {
