@@ -8,6 +8,9 @@
 import Foundation
 
 extension Bool {
+	///Равно ли False
+	public var isFalse: Bool { self == false }
+	
 	///И то, и то
 	public func and(_ value: @autoclosure () throws -> Bool) rethrows -> Bool {
 		return try self && value()
@@ -72,5 +75,3 @@ extension Bool {
 			false: `false`)
 	}
 }
-
-

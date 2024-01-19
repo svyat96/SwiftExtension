@@ -345,4 +345,9 @@ final class SwiftExtensionTests: XCTestCase {
 		XCTAssert("".addToHead("", 20) == "")
 		XCTAssert("pppp".addToHead("", 20) == "pppp")
 	}
+	
+	func testIsFalse() {
+		XCTAssert(true.isFalse == false)
+		XCTAssert(false.isFalse == true)
+	}
 }
