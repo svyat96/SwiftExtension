@@ -324,6 +324,10 @@ final class SwiftExtensionTests: XCTestCase {
 		let optionalStrThree: String? = true.getIf(true: .value("Privet!"), false: .value("Poka!"))
 		let optionalStrFour: String? = true.getIf()
 		
+		XCTAssert(
+			true.getIfOptional(true: .value("Str"), false: .value("Bl")) is String?
+		)
+		
 		XCTAssert(optionalStrFirst == "Privet!")
 		XCTAssert(optionalStrSecond == nil)
 		XCTAssert(optionalStrThree == "Privet!")
