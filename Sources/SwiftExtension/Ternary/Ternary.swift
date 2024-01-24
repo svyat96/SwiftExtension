@@ -16,7 +16,7 @@ public enum TernaryEnum<T: Any> {
 	case value(T)
 	case `func`(() -> T)
 	
-	fileprivate var result: T {
+	var result: T {
 		switch self {
 		case .value(let value):
 			return value

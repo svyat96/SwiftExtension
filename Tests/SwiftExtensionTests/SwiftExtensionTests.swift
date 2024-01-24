@@ -311,6 +311,20 @@ final class SwiftExtensionTests: XCTestCase {
 	}
 	
 	func testBoolTernary() {
+		let val: String = "Str"
+		let value: String? = false
+			.getIf(
+				true: .value(val),
+				false: .func({
+					true.getIf(false: .func({
+						val
+					}))
+				})
+			)
+		
+		
+		XCTAssert(value == nil)
+		
 		XCTAssert(
 			(20 < 30).getIf(
 				true: .value(true),
@@ -323,18 +337,6 @@ final class SwiftExtensionTests: XCTestCase {
 		let optionalStrSecond: String? = true.getIf(false: .value("Privet!"))
 		let optionalStrThree: String? = true.getIf(true: .value("Privet!"), false: .value("Poka!"))
 		
-		let value: String? = false
-			.getIf(
-				true: .value("Str"),
-				false: .func({
-					true.getIf(false: .func({
-						"Privet!"
-					}))
-				})
-			)
-		
-		
-		XCTAssert(value == nil)
 		
 		XCTAssert(optionalStrFirst == "Privet!")
 		XCTAssert(optionalStrSecond == nil)
