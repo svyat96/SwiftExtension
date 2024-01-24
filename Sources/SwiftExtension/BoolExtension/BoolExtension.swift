@@ -75,10 +75,13 @@ extension Bool {
 			false: `false`)
 	}
 	
-	public func getIfOptional<T>(
-		true: TernaryEnum<T?> = .value(nil),
-		false: TernaryEnum<T?> = .value(nil)
-	) -> T? where T: NonOptionalProtocol {
-		return self.getIf(true: `true`, false: `false`)
+	public func getIf<T: NonOptionalProtocol>(
+		true: TernaryEnum<Optional<T>> = .value(nil),
+		false: TernaryEnum<Optional<T>> = .value(nil)
+	) -> Optional<T> {
+		return Ternary.get(
+			if: .value(self),
+			true: `true`,
+			false: `false`)
 	}
 }

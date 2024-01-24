@@ -322,16 +322,23 @@ final class SwiftExtensionTests: XCTestCase {
 		let optionalStrFirst: String? = true.getIf(true: .value("Privet!"))
 		let optionalStrSecond: String? = true.getIf(false: .value("Privet!"))
 		let optionalStrThree: String? = true.getIf(true: .value("Privet!"), false: .value("Poka!"))
-		let optionalStrFour: String? = true.getIf()
 		
-		XCTAssert(
-			true.getIfOptional(true: .value("Str"), false: .value("Bl")) is String?
-		)
+		let value: String? = false
+			.getIf(
+				true: .value("Str"),
+				false: .func({
+					true.getIf(false: .func({
+						"Privet!"
+					}))
+				})
+			)
+		
+		
+		XCTAssert(value == nil)
 		
 		XCTAssert(optionalStrFirst == "Privet!")
 		XCTAssert(optionalStrSecond == nil)
 		XCTAssert(optionalStrThree == "Privet!")
-		XCTAssert(optionalStrFour == nil)
 	}
 	
 	func testStringCharacterMultiplication() {
