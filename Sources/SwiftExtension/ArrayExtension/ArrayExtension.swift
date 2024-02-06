@@ -39,6 +39,17 @@ extension Array {
 		let sorted = indexes.sorted()
 		return removeAll(sorted: sorted)
 	}
+    
+    ///Безопасное обращение к индексу первого элемента
+    public var safeStartIndex: Int? {
+        return (count == 0).getIf(false: .value(0))
+    }
+    
+    ///Безопасное обращение к индексу последнего элемента
+    public var safeEndIndex: Int? {
+        let index: Int = count.subtraction(1)
+        return (index < 0).getIf(false: .value(index))
+    }
 }
 
 //MARK: - addToTail

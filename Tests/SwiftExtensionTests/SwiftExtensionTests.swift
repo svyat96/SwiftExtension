@@ -309,6 +309,32 @@ final class SwiftExtensionTests: XCTestCase {
 			.addToTail(45.0
 				.addToTail(20)) == [20.0, 30.0, 45.0, 20.0])
 	}
+    
+    func testClosedRange() {
+        XCTAssert((0...0).getBoundedValue(initial: 20) == 0)
+        XCTAssert((0...10).getBoundedValue(initial: 20) == 10)
+        XCTAssert((0...30).getBoundedValue(initial: 20) == 20)
+        XCTAssert((0...10).getBoundedValue(initial: -10) == 0)
+        XCTAssert((-5...10).getBoundedValue(initial: -10) == -5)
+        XCTAssert((-15...10).getBoundedValue(initial: -10) == -10)
+        
+        XCTAssert((0.0...0.5).getBoundedValue(initial: 20).isEqual(to: 0.5))
+        XCTAssert((0.0...10.0).getBoundedValue(initial: 20).isEqual(to: 10.0))
+        XCTAssert((0.0...30.0).getBoundedValue(initial: 20).isEqual(to: 20.0))
+        XCTAssert((0.0...10.0).getBoundedValue(initial: -10).isEqual(to: 0.0))
+        XCTAssert((-5.0...10.0).getBoundedValue(initial: -10).isEqual(to: -5.0))
+        XCTAssert((-15.0...10.0).getBoundedValue(initial: -10).isEqual(to: -10.0))
+    }
+    
+    func testIndexInArray() {
+        XCTAssert(["v", "b"].safeStartIndex == 0)
+        XCTAssert(["v", "b"].safeEndIndex == 1)
+        XCTAssert([].safeStartIndex == nil)
+        XCTAssert([].safeEndIndex == nil)
+        
+        XCTAssert(["v", "a", "l", "u", "e"].safeStartIndex == 0)
+        XCTAssert(["v", "a", "l", "u", "e"].safeEndIndex == 4)
+    }
 	
 	func testBoolTernary() {
 		let val: String = "Str"
