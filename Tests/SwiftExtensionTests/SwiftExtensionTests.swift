@@ -326,6 +326,37 @@ final class SwiftExtensionTests: XCTestCase {
         XCTAssert((-15.0...10.0).getBoundedValue(initial: -10).isEqual(to: -10.0))
     }
     
+    func testGetIfProtocol() {
+        let str = "BlaBla"
+        let value: Double = 0.0
+            .sum(0.5)
+            .multiplication(3)
+            .getIf({$0 > 0.5}, true: .value(0), false: .value(2))
+            .getIf(.func({ str == "Bla" }), true: .value(0), false: .value(2))
+        
+        let valueDict: [String: Int] = ["BlaBla2": 0, "BlaBla3": 1, "BlaBla4": 2]
+        
+        XCTAssert(valueDict.getIf(
+            { $0.first { $0.key == "BlaBla3" } != nil },
+            true: .value(["BlaBla3": 1]))
+        .nonOptional(["Bla": 2]) == ["BlaBla3": 1] )
+        
+        XCTAssert(valueDict.getIf(
+            { $0.first { $0.key == "BlaBla5" } != nil },
+            true: .value(["BlaBla3": 1]))
+        .nonOptional(["Bla": 2]) == ["Bla": 2] )
+        
+        XCTAssert(
+            valueDict.getIf(
+                {$0.isEmpty},
+                true: .value(20),
+                false: .value(30))
+            .isEqual(to: 30)
+        )
+        
+        XCTAssert(value.isEqual(to: 2))
+    }
+    
     func testIndexInArray() {
         XCTAssert(["v", "b"].safeStartIndex == 0)
         XCTAssert(["v", "b"].safeEndIndex == 1)
