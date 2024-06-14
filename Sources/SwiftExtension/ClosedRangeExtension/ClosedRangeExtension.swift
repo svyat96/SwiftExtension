@@ -2,19 +2,19 @@
 //  ClosedRangeExtension.swift
 //
 //
-//  Created by Святослав Спорыхин on 2/6/24.
+//  Created by Svyatoslav Sporykhin on 2/6/24.
 //
 
 import Foundation
 
 extension ClosedRange {
-    
-    /// Возвращает значение в рамках допустимого
-    /// - Parameter value: Значение сравнивается с доступным диапазоном
-    /// - Returns: Получаем значение после проверки по диапазону иначе возращаем допустимые lowerBound/upperBound значения
-    public func getBoundedValue(
-        initial value: Bound
-    ) -> Bound {
+    /**
+     Returns a value within the allowed range.
+
+     - Parameter value: The value to be checked against the available range.
+     - Returns: The bounded value within the range; otherwise, returns the appropriate `lowerBound` or `upperBound` values.
+     */
+    public func getBoundedValue(initial value: Bound) -> Bound {
         let maxValue: Bound = (value > upperBound)
             .getIf(
                 true: .value(upperBound),
@@ -26,3 +26,4 @@ extension ClosedRange {
                 false: .value(maxValue))
     }
 }
+

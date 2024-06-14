@@ -1,45 +1,58 @@
 //
-//  File.swift
-//  
+//  Ternary.swift
 //
-//  Created by Святослав Спорыхин on 5/17/22.
+//
+//  Created by Svyatoslav Sporykhin on 5/17/22.
 //
 
 import Foundation
 
-/// Abstract value
-/// - case value:(T)
-/// - case func: (() -> T)
-/// - case pipelineTernary: (TernaryEnum<T>)
-/// - var result: return actual case
+/**
+ An enumeration representing an abstract value.
+ 
+ - value: A direct value of type `T`.
+ - `func`: A closure that returns a value of type `T`.
+ */
 public enum TernaryEnum<T: Any> {
-	case value(T)
-	case `func`(() -> T)
-	
-	var result: T {
-		switch self {
-		case .value(let value):
-			return value
-		case .func(let funcValue):
-			return funcValue()
-		}
-	}
+    case value(T)
+    case `func`(() -> T)
+    
+    /**
+     The resulting value based on the enumeration case.
+     
+     - Returns: The actual value of type `T`.
+     */
+    var result: T {
+        switch self {
+        case .value(let value):
+            return value
+        case .func(let funcValue):
+            return funcValue()
+        }
+    }
 }
 
-//Abstract ternary logic
+/**
+ An enumeration representing abstract ternary logic.
+ */
 public enum Ternary {
-	
-	/// Readable ternary
-	/// - Parameter if: Condition
-	/// - Parameter true: True completion
-	/// - Parameter false: False completion
-	/// - Returns: Actual completion
-	@available(*, deprecated, message: "Используйте getIf у Bool!")
-	static public func get<T: Any>(
-		if: TernaryEnum<Bool>,
-		true: TernaryEnum<T>,
-		false: TernaryEnum<T>
-	) -> T {
-		return `if`.result ? `true`.result : `false`.result
-	}
+    /**
+     Readable ternary logic.
+     
+     - Parameters:
+       - `if`: The condition to evaluate.
+       - true: The completion to execute if the condition is true.
+       - false: The completion to execute if the condition is false.
+     - Returns: The result of the true or false completion based on the condition.
+     
+     - Note: This method is deprecated. Use `getIf` on `Bool` instead.
+     */
+    @available(*, deprecated, message: "Use getIf on Bool!")
+    static public func get<T: Any>(
+        if: TernaryEnum<Bool>,
+        true: TernaryEnum<T>,
+        false: TernaryEnum<T>
+    ) -> T {
+        return `if`.result ? `true`.result : `false`.result
+    }
 }

@@ -1,20 +1,28 @@
 //
 //  CGFloatExtension + UIKit.swift
-//  
 //
-//  Created by Святослав Спорыхин on 7/27/23.
+//
+//  Created by Svyatoslav Sporykhin on 7/27/23.
 //
 
 import UIKit
 
 extension CGFloat {
-	/// Ширина главного экрана
-	public static var screenWidth: CGFloat {
-		return UIScreen.main.bounds.width
-	}
-	
-	/// Высота главного экрана
-	public static var screenHeight: CGFloat {
-		return UIScreen.main.bounds.height
-	}
+    /**
+     The width of the main screen.
+     
+     - Returns: The width of the main screen.
+     */
+    public static var screenWidth: CGFloat {
+        return UIScreen.main.bounds.width
+    }
+    
+    /**
+     The height of the main screen.
+     
+     - Returns: The height of the main screen.
+     */
+    public static var screenHeight: CGFloat {
+        return UIScreen.main.bounds.height
+    }
 }
