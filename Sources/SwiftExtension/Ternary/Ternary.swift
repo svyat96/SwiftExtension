@@ -44,11 +44,8 @@ public enum Ternary {
        - true: The completion to execute if the condition is true.
        - false: The completion to execute if the condition is false.
      - Returns: The result of the true or false completion based on the condition.
-     
-     - Note: This method is deprecated. Use `getIf` on `Bool` instead.
      */
-    @available(*, deprecated, message: "Use getIf on Bool!")
-    static public func get<T: Any>(
+    static internal func get<T: Any>(
         if: TernaryEnum<Bool>,
         true: TernaryEnum<T>,
         false: TernaryEnum<T>

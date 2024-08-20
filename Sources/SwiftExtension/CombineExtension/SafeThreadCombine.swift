@@ -18,7 +18,7 @@ public struct AutoReceiveInMainQueue<Upstream: Publisher>: Publisher {
 			return
 		}
 		upstream
-			.receive(on: DispatchQueue.main)
+			.receive(on: RunLoop.main)
 			.receive(subscriber: subscriber)
 	}
 	
