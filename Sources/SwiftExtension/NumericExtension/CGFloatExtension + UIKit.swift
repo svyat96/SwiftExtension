@@ -6,7 +6,6 @@
 //
 
 import UIKit
-
 extension CGFloat {
     /**
      The width of the main screen.
